@@ -10,21 +10,21 @@ using System.Threading.Tasks;
 
 namespace Lunatech.Application.Repos
 {
-    public class PortfolioCategoryRepo : BaseRepo<ProjectCategory>
+    public class PortfolioCategoryRepo : BaseRepo<Category>
     {
         public PortfolioCategoryRepo(AppDbContext context) : base(context) { }
 
-        public async Task<ProjectCategory> GetByIdAsync(int id, int langId)
+        public async Task<Category> GetByIdAsync(int id, int langId)
         {
-            ProjectCategory projectCategory = await AsQueryable().AsNoTracking()
+            Category projectCategory = await AsQueryable().AsNoTracking()
                    .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
 
             return projectCategory;
         }
 
-        public IQueryable<ProjectCategory> GetListQuery(int langId)
+        public IQueryable<Category> GetListQuery(int langId)
         {
-            IQueryable<ProjectCategory> newsListQuery = AsQueryable().AsNoTracking();
+            IQueryable<Category> newsListQuery = AsQueryable().AsNoTracking();
                 //.Include(e => e.User)
                 //.Include(e => e.NewsType)
                 //.Include(e => e.NewsFiles.Where(f => f.IsActive))

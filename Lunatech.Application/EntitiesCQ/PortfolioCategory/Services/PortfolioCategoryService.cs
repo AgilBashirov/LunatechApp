@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Lunatech.Application.EntitiesCQ.PortfolioCategory.Services
 {
-    public class PortfolioCategoryService : IRepositoryService<Domain.Entities.ProjectCategory>
+    public class PortfolioCategoryService : IRepositoryService<Domain.Entities.Category>
     {
         private readonly PortfolioCategoryRepo _portfolioCategoryRepo;
 
@@ -19,16 +19,16 @@ namespace Lunatech.Application.EntitiesCQ.PortfolioCategory.Services
         }
 
 
-        public async Task<List<Domain.Entities.ProjectCategory>> GetAllAsync(int langId)
+        public async Task<List<Domain.Entities.Category>> GetAllAsync(int langId)
         {
             return await _portfolioCategoryRepo.GetListQuery(langId).ToListAsync();
         }
 
-        public async Task<Domain.Entities.ProjectCategory> GetAsync(int id, int langId)
+        public async Task<Domain.Entities.Category> GetAsync(int id, int langId)
         {
             return await _portfolioCategoryRepo.GetByIdAsync(id, langId);
         }
-        public async Task<int> CreateAsync(Domain.Entities.ProjectCategory command)
+        public async Task<int> CreateAsync(Domain.Entities.Category command)
         {
             command.CreatedDate = DateTime.Now;
             command.IsActive = true;
@@ -36,7 +36,7 @@ namespace Lunatech.Application.EntitiesCQ.PortfolioCategory.Services
 
         }
 
-        public async Task<int> UpdateAsync(int id, Domain.Entities.ProjectCategory command)
+        public async Task<int> UpdateAsync(int id, Domain.Entities.Category command)
         {
             command.IsActive = true;
             return await _portfolioCategoryRepo.UpdateAsync(command, true);

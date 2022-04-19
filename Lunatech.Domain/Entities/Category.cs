@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Lunatech.Domain.Entities
 {
-    public class ProjectCategory : BaseEntity
+    public class Category:BaseEntity
     {
         public string Name { get; set; }
+        public List<Project> Projects { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace Lunatech.Persistence.Data
                 var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<AppUser>>();
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<AppRole>>();
-                if (db.ProjectCategories.Any()
+                if (db.Categories.Any()
                     || db.Users.Any()
                     || db.Roles.Any())
                     return app;
@@ -67,7 +67,7 @@ namespace Lunatech.Persistence.Data
                 #endregion
 
                 #region PC
-                List<ProjectCategory> pcList = new();
+                List<Category> pcList = new();
 
                 pcList.Add(new()
                 {
@@ -90,7 +90,7 @@ namespace Lunatech.Persistence.Data
                 #endregion
 
 
-                await db.ProjectCategories.AddRangeAsync(pcList);
+                await db.Categories.AddRangeAsync(pcList);
                 await db.SaveChangesAsync();
                 foreach (var user in uList)
                 {

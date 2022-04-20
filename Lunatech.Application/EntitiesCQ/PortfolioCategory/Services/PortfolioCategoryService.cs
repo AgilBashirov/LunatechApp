@@ -25,9 +25,9 @@ namespace Lunatech.Application.EntitiesCQ.PortfolioCategory.Services
         }
 
 
-        public async Task<List<GetCategoryListDto>> GetAllAsync(int langId)
+        public async Task<List<GetCategoryListDto>> GetAllAsync(int langId, int pageNumber, int pageSize)
         {
-            var result = await _portfolioCategoryRepo.GetListQuery(langId).ToListAsync();
+            var result = await _portfolioCategoryRepo.GetListQuery(langId, pageNumber, pageSize).ToListAsync();
             return _mapper.Map<List<GetCategoryListDto>>(result);
         }
 

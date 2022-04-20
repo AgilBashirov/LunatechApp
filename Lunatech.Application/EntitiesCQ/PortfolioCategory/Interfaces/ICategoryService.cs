@@ -11,7 +11,7 @@ namespace Lunatech.Application.EntitiesCQ.PortfolioCategory.Interfaces
 {
     public interface ICategoryService : IBaseService
     {
-        Task<List<GetCategoryListDto>> GetAllAsync(int langId);
+        Task<List<GetCategoryListDto>> GetAllAsync(int langId, int pageNumber, int pageSize);
         Task<GetCategoryDetailDto> GetAsync(int id, int langId);
         Task<int> CreateAsync(CreateCategoryDto command);
         Task<int> UpdateAsync(int id, UpdateCategoryDto command);

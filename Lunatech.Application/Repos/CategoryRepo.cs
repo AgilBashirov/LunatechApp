@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace Lunatech.Application.Repos
 {
-    public class PortfolioCategoryRepo : BaseRepo<Category>
+    public class CategoryRepo : BaseRepo<Category>
     {
-        public PortfolioCategoryRepo(AppDbContext context) : base(context) { }
+        public CategoryRepo(AppDbContext context) : base(context) { }
 
         public async Task<Category> GetByIdAsync(int id, int langId)
         {

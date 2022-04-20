@@ -13,12 +13,12 @@ using System.Threading.Tasks;
 
 namespace Lunatech.Application.EntitiesCQ.PortfolioCategory.Services
 {
-    public class PortfolioCategoryService : ICategoryService
+    public class CategoryService : ICategoryService
     {
-        private readonly PortfolioCategoryRepo _portfolioCategoryRepo;
+        private readonly CategoryRepo _portfolioCategoryRepo;
         private readonly IMapper _mapper;
 
-        public PortfolioCategoryService(PortfolioCategoryRepo portfolioCategoryRepo, IMapper mapper)
+        public CategoryService(CategoryRepo portfolioCategoryRepo, IMapper mapper)
         {
             _portfolioCategoryRepo = portfolioCategoryRepo;
             _mapper = mapper;

@@ -33,13 +33,14 @@ namespace Lunatech.WebApi.Controllers
             if (result == null)
                 return NotFound();
 
-            return result;
+            return Ok(result);
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetCategoryListDto>>> Get(int langId)
+        public async Task<ActionResult<List<GetCategoryListDto>>> Get(int langId, int pageNumber, int pageSize)
         {
-            return await _categoryService.GetAllAsync(langId);
+            var result = await _categoryService.GetAllAsync(langId, pageNumber, pageSize);
+            return Ok(result);
         }
 
         [HttpPost]
@@ -49,15 +50,16 @@ namespace Lunatech.WebApi.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<int> Update([FromRoute] int id, [FromQuery] UpdateCategoryDto command)
+        public async Task<ActionResult<int>> Update([FromRoute] int id, [FromQuery] UpdateCategoryDto command)
         {
             return await _categoryService.UpdateAsync(id, command);
         }
 
         [HttpDelete("{id}")]
-        public async Task Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
             await _categoryService.DeleteAsync(id);
+            return Ok();
         }
 
     }

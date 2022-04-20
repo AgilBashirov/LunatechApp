@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 
 namespace Lunatech.Application.Services
 {
-    public interface IRepositoryService<T> : IBaseService where T : class // where U : BaseEntity
+    public interface IRepositoryService<T> : IBaseService where T : class
     {
         Task<List<T>> GetAllAsync(int langId);
         Task<T> GetAsync(int id, int langId);

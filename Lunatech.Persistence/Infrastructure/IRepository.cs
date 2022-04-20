@@ -69,7 +69,7 @@ namespace Lunatech.Application.Services.Abstraction
         /// </summary>
         /// <param name="entity">Entity entry</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task<int> UpdateAsync(TEntity entity, bool saveChanges = false);
+        Task<int> UpdateAsync(TEntity entity);
 
         /// <summary>
         /// Delete the entity entry

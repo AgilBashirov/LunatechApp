@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Lunatech.Application.Model.Dto
 {
-    public class ProjectCategoryDto
+    public class CategoryDto
     {
         public string Name { get; set; }
 

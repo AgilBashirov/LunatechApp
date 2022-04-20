@@ -113,7 +113,7 @@ namespace Lunatech.Persistence.Infrastructure
         }
 
 
-        public async Task<int> UpdateAsync(TEntity entity, bool saveChanges = false)
+        public async Task<int> UpdateAsync(TEntity entity)
         {
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
@@ -125,8 +125,9 @@ namespace Lunatech.Persistence.Infrastructure
                     throw new InvalidOperationException("EntityState not valid for update");
 
                 case EntityState.Detached:
-                    Table.Update(entity);
-                    entity.UpdateDate = DateTime.Now;
+                    var model = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == entity.Id);
+                    model.UpdateDate = DateTime.Now;
+                    Table.Update(model);
                     //entity.IsActive = true;
                     break;
 
@@ -164,7 +165,7 @@ namespace Lunatech.Persistence.Infrastructure
             {
                 entity.IsActive = false;
                 entity.DeletedDate = DateTime.Now;
-                await UpdateAsync(entity, saveChanges);
+                await UpdateAsync(entity);
             }
         }
 

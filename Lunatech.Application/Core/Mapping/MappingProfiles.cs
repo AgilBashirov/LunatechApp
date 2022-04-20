@@ -13,7 +13,7 @@ namespace Lunatech.Application.Core
     {
         public MappingProfiles()
         {
-            CreateMap<ProjectCategoryDto, Category>();
+            CreateMap<CategoryDto, Category>();
                 //.ForMember(news => news.CreatedDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
                 //.ForMember(news => news.IsActive, opt => opt.MapFrom(createNewsCommand => true))
                 //.ForMember(news => news.UpdateDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))

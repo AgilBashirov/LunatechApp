@@ -16,7 +16,7 @@ namespace Lunatech.Application.Repos
 
         public IQueryable<Social> GetListQuery()
         {
-            IQueryable<Social> socialListQuery = AsQueryable().AsNoTracking();
+            IQueryable<Social> socialListQuery = AsQueryable().AsNoTracking().Where(x=>x.IsActive);
             return socialListQuery;
         }
         public async Task<Social> GetByIdAsync(int id)

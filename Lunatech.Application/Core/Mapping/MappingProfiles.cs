@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Lunatech.Application.EntitiesCQ.Project.Commands;
 using Lunatech.Application.Model.Dto;
+using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
 using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
@@ -43,6 +44,15 @@ namespace Lunatech.Application.Core
 
             //ProjectImage
             CreateMap<CreateProjectImageDto, ProjectImage>().ReverseMap();
+
+
+            //Applyment
+            CreateMap<GetApplymentListDto, Applyment>().ReverseMap();
+            CreateMap<GetApplymentDetailDto, Applyment>().ReverseMap();
+            CreateMap<CreateApplymentDto, Applyment>().ReverseMap();
+            CreateMap<UpdateApplymentDto, Applyment>().ReverseMap();
+
+            
 
         }
     }

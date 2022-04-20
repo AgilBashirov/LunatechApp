@@ -25,14 +25,14 @@ namespace Lunatech.Application.Repos
 
         public IQueryable<Category> GetListQuery(int langId, int pageNumber, int pageSize)
         {
-            IQueryable<Category> categoryListQuery = AsQueryable().AsNoTracking();
-            //.Include(e => e.User)
+            IQueryable<Category> categoryListQuery = AsQueryable().AsNoTracking()
+            .Include(e => e.Projects)
             //.Include(e => e.NewsType)
             //.Include(e => e.NewsFiles.Where(f => f.IsActive))
             //.ThenInclude(f => f.File)
             //.Include(e => e.NewsLangs.Where(f => f.IsActive && f.LangId == langId))
             //.ThenInclude(f => f.NewsLangStatus)
-            //.Where(e => e.NewsLangs != null && e.NewsLangs.Count > 0 && e.IsActive);
+            .Where(e => e.IsActive);
 
             PaginationFilter pagination = new PaginationFilter(pageNumber, pageSize);
 

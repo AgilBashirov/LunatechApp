@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Lunatech.Application.EntitiesCQ.PortfolioCategory.Interfaces;
 using Lunatech.Application.Model.Dto;
+using Lunatech.Application.Model.Dto.Category;
 using Lunatech.Application.Services;
 using Lunatech.Domain.Entities;
 using Microsoft.AspNetCore.Authorization;
@@ -17,15 +19,15 @@ namespace Lunatech.WebApi.Controllers
     [ApiController]
     public class CategoryController : ControllerBase
     {
-        private readonly IRepositoryService<CategoryDto> _categoryService;
+        private readonly ICategoryService _categoryService;
 
-        public CategoryController(IRepositoryService<CategoryDto> categoryService)
+        public CategoryController(ICategoryService categoryService)
         {
             _categoryService = categoryService;
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<CategoryDto>> Get(int id, int langId)
+        public async Task<ActionResult<GetCategoryDetailDto>> Get(int id, int langId)
         {
             var result = await _categoryService.GetAsync(id, langId);
             if (result == null)
@@ -35,19 +37,19 @@ namespace Lunatech.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<CategoryDto>>> Get(int langId)
+        public async Task<ActionResult<List<GetCategoryListDto>>> Get(int langId)
         {
             return await _categoryService.GetAllAsync(langId);
         }
 
         [HttpPost]
-        public async Task<int> Create(CategoryDto command)
+        public async Task<int> Create(CreateCategoryDto command)
         {
             return await _categoryService.CreateAsync(command);
         }
 
         [HttpPut("{id}")]
-        public async Task<int> Update([FromRoute] int id, [FromQuery] CategoryDto command)
+        public async Task<int> Update([FromRoute] int id, [FromQuery] UpdateCategoryDto command)
         {
             return await _categoryService.UpdateAsync(id, command);
         }

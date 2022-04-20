@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Lunatech.Domain.Entities;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Lunatech.Application.Services
 {
-    public interface IRepositoryService<T> : IBaseService where T : class
+    public interface IRepositoryService<T> : IBaseService where T : BaseEntity
     {
         Task<List<T>> GetAllAsync(int langId);
         Task<T> GetAsync(int id, int langId);

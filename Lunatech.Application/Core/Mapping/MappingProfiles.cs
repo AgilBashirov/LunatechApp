@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lunatech.Application.Model.Dto;
+using Lunatech.Application.Model.Dto.Category;
 using Lunatech.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ namespace Lunatech.Application.Core
     {
         public MappingProfiles()
         {
-            CreateMap<CategoryDto, Category>();
-                //.ForMember(news => news.CreatedDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
-                //.ForMember(news => news.IsActive, opt => opt.MapFrom(createNewsCommand => true))
-                //.ForMember(news => news.UpdateDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
-                //.ForMember(news => news.DeletedDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
-                //.ForMember(news => news.Name, opt => opt.MapFrom(createNewsCommand => createNewsCommand.Name));
+            CreateMap<GetCategoryListDto, Category>().ReverseMap();
+            CreateMap<GetCategoryDetailDto, Category>().ReverseMap();
+            CreateMap<CreateCategoryDto, Category>().ReverseMap();
+            CreateMap<UpdateCategoryDto, Category>().ReverseMap();
+            //.ForMember(news => news.CreatedDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
+            //.ForMember(news => news.IsActive, opt => opt.MapFrom(createNewsCommand => true))
+            //.ForMember(news => news.UpdateDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
+            //.ForMember(news => news.DeletedDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
+            //.ForMember(news => news.Name, opt => opt.MapFrom(createNewsCommand => createNewsCommand.Name));
 
         }
     }

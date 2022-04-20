@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lunatech.Application.Model.Dto;
+using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
 using Lunatech.Application.Model.Dto.Socials;
 using Lunatech.Domain.Entities;
@@ -25,7 +26,15 @@ namespace Lunatech.Application.Core
             CreateMap<GetSocialDetailDto, Social>().ReverseMap();
             CreateMap<CreateSocialDto, Social>().ReverseMap();
             CreateMap<UpdateSocialDto, Social>().ReverseMap();
+
+            //Applyment
+            CreateMap<GetApplymentListDto, Applyment>().ReverseMap();
+            CreateMap<GetApplymentDetailDto, Applyment>().ReverseMap();
+            CreateMap<CreateApplymentDto, Applyment>().ReverseMap();
+            CreateMap<UpdateApplymentDto, Applyment>().ReverseMap();
+
             
+
         }
     }
 }

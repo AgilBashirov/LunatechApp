@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Lunatech.Application.Model.Dto;
 using Lunatech.Application.Model.Dto.Category;
+using Lunatech.Application.Model.Dto.Socials;
 using Lunatech.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -18,12 +19,13 @@ namespace Lunatech.Application.Core
             CreateMap<GetCategoryDetailDto, Category>().ReverseMap();
             CreateMap<CreateCategoryDto, Category>().ReverseMap();
             CreateMap<UpdateCategoryDto, Category>().ReverseMap();
-            //.ForMember(news => news.CreatedDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
-            //.ForMember(news => news.IsActive, opt => opt.MapFrom(createNewsCommand => true))
-            //.ForMember(news => news.UpdateDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
-            //.ForMember(news => news.DeletedDate, opt => opt.MapFrom(createNewsCommand => DateTime.Now))
-            //.ForMember(news => news.Name, opt => opt.MapFrom(createNewsCommand => createNewsCommand.Name));
 
+            //Social
+            CreateMap<GetSocialsListDto, Social>().ReverseMap();
+            CreateMap<GetSocialDetailDto, Social>().ReverseMap();
+            CreateMap<CreateSocialDto, Social>().ReverseMap();
+            CreateMap<UpdateSocialDto, Social>().ReverseMap();
+            
         }
     }
 }

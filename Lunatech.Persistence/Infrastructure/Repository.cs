@@ -165,7 +165,9 @@ namespace Lunatech.Persistence.Infrastructure
             {
                 entity.IsActive = false;
                 entity.DeletedDate = DateTime.Now;
-                await UpdateAsync(entity);
+                entity.UpdateDate = DateTime.Now;
+                Table.Update(entity);
+                await _context.SaveChangesAsync();
             }
         }
 

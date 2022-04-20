@@ -1,6 +1,5 @@
-﻿using AutoMapper;
-using Lunatech.Application.Services;
-using Lunatech.Domain.Entities;
+﻿using Lunatech.Application.EntitiesCQ.Socials.Interfaces;
+using Lunatech.Application.Model.Dto.Socials;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -13,19 +12,46 @@ namespace Lunatech.WebApi.Controllers
     [ApiController]
     public class SocialsController : ControllerBase
     {
-        private readonly IRepositoryService<Social> _projectCategoryService;
-        private readonly IMapper _mapper;
-        public SocialsController(IRepositoryService<Social> projectCategoryService, IMapper mapper)
-        {
-            _projectCategoryService = projectCategoryService;
-            _mapper = mapper;
+        private readonly ISocialService socialsService;
 
+        public SocialsController(ISocialService socialsService)
+        {
+            this.socialsService = socialsService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Domain.Entities.Social>>> Get(int langId)
+        public async Task<ActionResult<List<GetSocialsListDto>>> Get()
         {
-            return await _projectCategoryService.GetAllAsync(langId);
+            return await socialsService.GetAllAsync();
         }
+
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<GetSocialDetailDto>> Details(int id)
+        {
+            var result = await socialsService.GetAsync(id);
+            return result;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<int>> Create(CreateSocialDto command)
+        {
+            var data=await socialsService.CreateAsync(command);
+
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<int> Update([FromRoute] int id, [FromQuery] UpdateSocialDto command)
+        {
+            return await socialsService.UpdateAsync(id, command);
+        }
+
+        [HttpDelete("{id}")]
+        public async Task Delete(int id)
+        {
+            await socialsService.DeleteAsync(id);
+        }
+
     }
 }

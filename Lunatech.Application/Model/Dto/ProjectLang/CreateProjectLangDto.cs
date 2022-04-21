@@ -8,6 +8,7 @@ namespace Lunatech.Application.Model.Dto.ProjectLang
 {
     public class CreateProjectLangDto
     {
+        public int LangId { get; set; }
         public string Title { get; set; }
         public string UpTitle { get; set; }
         public string Desc { get; set; }

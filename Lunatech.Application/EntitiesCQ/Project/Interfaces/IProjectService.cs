@@ -1,4 +1,6 @@
-﻿using Lunatech.Application.Model.Dto.Project;
+﻿using Lunatech.Application.EntitiesCQ.Project.Commands;
+using Lunatech.Application.EntitiesCQ.Project.Queries;
+using Lunatech.Application.Model.Dto.Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +12,9 @@ namespace Lunatech.Application.EntitiesCQ.Project.Interfaces
     public interface IProjectService : IBaseService
     {
         Task<List<GetProjectListDto>> GetAllAsync(int langId, int pageNumber, int pageSize);
-        Task<GetProjectDetailDto> GetAsync(int id, int langId);
-        Task<int> CreateAsync(CreateProjectDto command);
-        Task<int> UpdateAsync(int id, UpdateProjectDto command);
+        Task<GetProjectDetailQuery> GetAsync(int id, int langId);
+        Task<int> CreateAsync(CreateProjectCommand command);
+        Task<int> UpdateAsync(int id, UpdateProjectCommand command);
         Task DeleteAsync(int id);
     }
 }

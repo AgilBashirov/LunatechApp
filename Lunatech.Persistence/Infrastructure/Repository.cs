@@ -101,7 +101,7 @@ namespace Lunatech.Persistence.Infrastructure
         }
 
 
-        public async Task<int> InsertAsync(TEntity entity, bool saveChanges = false)
+        public async Task<int> InsertAsync(TEntity entity)
         {
             if (entity == null)
                 throw new ArgumentNullException(nameof(entity));
@@ -118,33 +118,35 @@ namespace Lunatech.Persistence.Infrastructure
             if (entity is null)
                 throw new ArgumentNullException(nameof(entity));
 
-            switch (_context.Entry(entity).State)
-            {
-                case EntityState.Added:
-                case EntityState.Deleted:
-                    throw new InvalidOperationException("EntityState not valid for update");
+            //switch (_context.Entry(entity).State)
+            //{
+            //    case EntityState.Added:
+            //    case EntityState.Deleted:
+            //        throw new InvalidOperationException("EntityState not valid for update");
 
-                case EntityState.Detached:
-                    entity.UpdateDate = DateTime.Now;
-                    Table.Update(entity);
-                    //entity.IsActive = true;
-                    break;
+            //    case EntityState.Detached:
+            //        entity.UpdateDate = DateTime.Now;
+            //        Table.Update(entity);
+            //        //entity.IsActive = true;
+            //        break;
 
-                case EntityState.Unchanged:
-                case EntityState.Modified:
-                    break;
+            //    case EntityState.Unchanged:
+            //    case EntityState.Modified:
+            //        break;
 
-                default:
-                    throw new InvalidOperationException("EntityState has not value");
-            }
+            //    default:
+            //        throw new InvalidOperationException("EntityState has not value");
+            //}
 
+            entity.UpdateDate = DateTime.Now;
+            Table.Update(entity);
             await _context.SaveChangesAsync();
 
             return entity.Id;
         }
 
 
-        public async Task DeleteAsync(TEntity entity, bool saveChanges = false)
+        public async Task DeleteAsync(TEntity entity)
         {
             //switch (entity)
             //{

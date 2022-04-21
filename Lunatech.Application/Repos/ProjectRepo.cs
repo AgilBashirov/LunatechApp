@@ -17,12 +17,12 @@ namespace Lunatech.Application.Repos
 
         public async Task<Project> GetByIdAsync(int id, int langId)
         {
-            Project projects = await AsQueryable().AsNoTracking()
+            Project project = await AsQueryable().AsNoTracking()
             .Include(e => e.ProjectLangs.Where(e => e.IsActive && e.LangId == langId))
             .Include(e => e.ProjectImages.Where(e => e.IsActive))
             .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
 
-            return projects;
+            return project;
         }
 
         public IQueryable<Project> GetListQuery(int langId, int pageNumber, int pageSize)

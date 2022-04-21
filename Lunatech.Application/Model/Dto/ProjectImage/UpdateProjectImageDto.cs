@@ -8,5 +8,11 @@ namespace Lunatech.Application.Model.Dto.ProjectImage
 {
     public class UpdateProjectImageDto
     {
+        public int Id { get; set; }
+        public string Image { get; set; }
+
+        //public IFormFile ImageFile { get; set; }
+        public int Priority { get; set; }
+        public bool IsMain { get; set; }
     }
 }

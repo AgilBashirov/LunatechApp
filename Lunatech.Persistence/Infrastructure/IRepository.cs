@@ -62,7 +62,7 @@ namespace Lunatech.Application.Services.Abstraction
         /// </summary>
         /// <param name="entity">Entity entry</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task<int> InsertAsync(TEntity entity, bool saveChanges = false);
+        Task<int> InsertAsync(TEntity entity);
 
         /// <summary>
         /// Update the entity entry
@@ -76,7 +76,7 @@ namespace Lunatech.Application.Services.Abstraction
         /// </summary>
         /// <param name="entity">Entity entry</param>
         /// <returns>A task that represents the asynchronous operation</returns>
-        Task DeleteAsync(TEntity entity, bool saveChanges = false);
+        Task DeleteAsync(TEntity entity);
 
     }
 }

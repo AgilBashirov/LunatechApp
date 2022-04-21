@@ -1,4 +1,6 @@
-﻿using Lunatech.Application.EntitiesCQ.Project.Interfaces;
+﻿using Lunatech.Application.EntitiesCQ.Project.Commands;
+using Lunatech.Application.EntitiesCQ.Project.Interfaces;
+using Lunatech.Application.EntitiesCQ.Project.Queries;
 using Lunatech.Application.Model.Dto.Project;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -21,7 +23,7 @@ namespace Lunatech.WebApi.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<GetProjectDetailDto>> Get(int id, int langId)
+        public async Task<ActionResult<GetProjectDetailQuery>> Get(int id, int langId)
         {
             var result = await _projectService.GetAsync(id, langId);
             if (result == null)
@@ -38,15 +40,15 @@ namespace Lunatech.WebApi.Controllers
         }
 
         [HttpPost]
-        public async Task<int> Create(CreateProjectDto command)
+        public async Task<int> Create([FromBody] CreateProjectCommand command)
         {
             return await _projectService.CreateAsync(command);
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<int>> Update([FromRoute] int id, [FromQuery] UpdateProjectDto command)
+        public async Task<ActionResult<int>> Update([FromRoute] int id, [FromBody] UpdateProjectCommand command)
         {
-            return await _projectService.UpdateAsync(id, command);
+            return Ok(await _projectService.UpdateAsync(id, command));
         }
 
         [HttpDelete("{id}")]

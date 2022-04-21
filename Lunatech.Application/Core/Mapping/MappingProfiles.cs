@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Lunatech.Application.EntitiesCQ.Project.Commands;
+using Lunatech.Application.EntitiesCQ.Project.Queries;
 using Lunatech.Application.Model.Dto;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
@@ -39,12 +40,31 @@ namespace Lunatech.Application.Core
             CreateMap<CreateProjectCommand, ProjectLang>().ReverseMap();
             CreateMap<CreateProjectCommand, ProjectImage>().ReverseMap();
 
+            CreateMap<UpdateProjectCommand, Project>()
+                //.ForMember(project => project.ProjectLangs, opt => opt.MapFrom(createProjectCommand => createProjectCommand.ProjectLangs))
+                //.ForMember(project => project.ProjectImages, opt => opt.MapFrom(createProjectCommand => createProjectCommand.ProjectImages))
+                .ForMember(project => project.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
+
+            //CreateMap<UpdateProjectCommand, ProjectLang>()
+            //    .ForMember(projectLang => projectLang.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
+
+            CreateMap<UpdateProjectCommand, ProjectImage>()
+                .ForMember(projectLang => projectLang.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
+
+            CreateMap<Project, GetProjectDetailQuery>()
+                .ForMember(project => project.ProjectLangs, opt => opt.MapFrom(entity => entity.ProjectLangs))
+                .ForMember(project => project.ProjectImages, opt => opt.MapFrom(entity => entity.ProjectImages));
+            CreateMap<ProjectLang, GetProjectLangListDto>().ReverseMap();
+            CreateMap<ProjectImage, GetProjectImageListDto>().ReverseMap();
+
             //ProjectLang
             CreateMap<CreateProjectLangDto, ProjectLang>().ReverseMap();
+            CreateMap<UpdateProjectLangDto, ProjectLang>().ReverseMap();
+
 
             //ProjectImage
             CreateMap<CreateProjectImageDto, ProjectImage>().ReverseMap();
-
+            CreateMap<UpdateProjectImageDto, ProjectImage>();
 
             //Applyment
             CreateMap<GetApplymentListDto, Applyment>().ReverseMap();

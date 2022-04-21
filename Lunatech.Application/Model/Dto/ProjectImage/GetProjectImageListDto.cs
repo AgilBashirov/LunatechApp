@@ -8,5 +8,9 @@ namespace Lunatech.Application.Model.Dto.ProjectImage
 {
     public class GetProjectImageListDto
     {
+        public int Id { get; set; }
+        public string Image { get; set; }
+        public int Priority { get; set; }
+        public bool IsMain { get; set; }
     }
 }

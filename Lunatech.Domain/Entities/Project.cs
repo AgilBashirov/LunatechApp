@@ -12,7 +12,7 @@ namespace Lunatech.Domain.Entities
         public string Link { get; set; }
         public int CategoryId { get; set; }
 
-        [ForeignKey("ProjectId")]
+        [ForeignKey("CategoryId")]
         public Category Category { get; set; }
 
         public List<ProjectImage> ProjectImages { get; set; }

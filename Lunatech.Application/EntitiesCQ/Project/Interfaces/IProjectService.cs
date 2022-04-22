@@ -11,7 +11,7 @@ namespace Lunatech.Application.EntitiesCQ.Project.Interfaces
 {
     public interface IProjectService : IBaseService
     {
-        Task<List<GetProjectListDto>> GetAllAsync(int langId, int pageNumber, int pageSize);
+        Task<List<GetProjectListQuery>> GetAllAsync(int langId, int pageNumber, int pageSize);
         Task<GetProjectDetailQuery> GetAsync(int id, int langId);
         Task<int> CreateAsync(CreateProjectCommand command);
         Task<int> UpdateAsync(int id, UpdateProjectCommand command);

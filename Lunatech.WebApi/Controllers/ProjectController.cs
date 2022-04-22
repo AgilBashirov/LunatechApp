@@ -33,7 +33,7 @@ namespace Lunatech.WebApi.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<GetProjectListDto>>> Get(int langId, int pageNumber, int pageSize)
+        public async Task<ActionResult<List<GetProjectListQuery>>> Get(int langId, int pageNumber, int pageSize)
         {
             var result = await _projectService.GetAllAsync(langId, pageNumber, pageSize);
             return Ok(result);

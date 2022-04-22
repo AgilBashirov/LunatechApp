@@ -19,6 +19,7 @@ namespace Lunatech.Application.Repos
         {
             Project project = await AsQueryable().AsNoTracking()
             .Include(e => e.ProjectLangs.Where(e => e.IsActive && e.LangId == langId))
+            .ThenInclude(e=>e.Language)
             .Include(e => e.ProjectImages.Where(e => e.IsActive))
             .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
 
@@ -29,6 +30,7 @@ namespace Lunatech.Application.Repos
         {
             IQueryable<Project> projectListQuery = AsQueryable().AsNoTracking()
             .Include(e => e.ProjectLangs.Where(e => e.IsActive && e.LangId == langId))
+            .ThenInclude(e => e.Language)
             .Include(e => e.ProjectImages.Where(e => e.IsActive))
             .Where(e => e.IsActive);
 

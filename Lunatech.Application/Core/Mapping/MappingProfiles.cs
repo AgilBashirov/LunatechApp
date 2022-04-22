@@ -49,7 +49,7 @@ namespace Lunatech.Application.Core
             //    .ForMember(projectLang => projectLang.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
 
             CreateMap<UpdateProjectCommand, ProjectImage>()
-                .ForMember(projectLang => projectLang.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
+                .ForMember(projectImage => projectImage.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
 
             CreateMap<Project, GetProjectDetailQuery>()
                 .ForMember(project => project.ProjectLangs, opt => opt.MapFrom(entity => entity.ProjectLangs))
@@ -57,9 +57,18 @@ namespace Lunatech.Application.Core
             CreateMap<ProjectLang, GetProjectLangListDto>().ReverseMap();
             CreateMap<ProjectImage, GetProjectImageListDto>().ReverseMap();
 
+            CreateMap<Project, GetProjectListQuery>()
+                .ForMember(query => query.ProjectList, opt => opt.MapFrom(item => new List<Project> { item }));
+
+            //CreateMap<GetProjectListQuery, GetProjectDetailQuery>()
+            //    .ForMember(detail => new List<GetProjectDetailQuery> { detail } as ICollection<GetProjectDetailQuery>, opt => opt.MapFrom(list => list));
+
+
             //ProjectLang
             CreateMap<CreateProjectLangDto, ProjectLang>().ReverseMap();
-            CreateMap<UpdateProjectLangDto, ProjectLang>().ReverseMap();
+            CreateMap<UpdateProjectLangDto, ProjectLang>()
+                .ForMember(projectLang => projectLang.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
+
 
 
             //ProjectImage

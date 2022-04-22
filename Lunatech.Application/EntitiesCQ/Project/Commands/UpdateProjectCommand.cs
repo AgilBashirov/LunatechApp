@@ -15,6 +15,6 @@ namespace Lunatech.Application.EntitiesCQ.Project.Commands
         public int LangId { get; set; }
 
         public List<UpdateProjectImageDto> ProjectImages { get; set; }
-        //public List<UpdateProjectLangDto> ProjectLangs { get; set; }
+        public List<UpdateProjectLangDto> ProjectLangs { get; set; }
     }
 }

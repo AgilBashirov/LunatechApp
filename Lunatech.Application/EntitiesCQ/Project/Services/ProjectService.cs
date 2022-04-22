@@ -42,7 +42,16 @@ namespace Lunatech.Application.EntitiesCQ.Project.Services
 
         public async Task DeleteAsync(int id)
         {
-            var model = await _projectRepo.GetByIdAsync(id, 1);
+            var model = await _projectRepo.GetByIdAsync(id);
+
+            foreach (var item in model.ProjectImages)
+            {
+                await _projectImageRepo.DeleteAsync(item);
+            }
+            foreach (var item in model.ProjectLangs)
+            {
+                await _projectLangRepo.DeleteAsync(item);
+            }
             await _projectRepo.DeleteAsync(model);
         }
 

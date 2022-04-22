@@ -25,6 +25,16 @@ namespace Lunatech.Application.Repos
 
             return project;
         }
+        public async Task<Project> GetByIdAsync(int id)
+        {
+            Project project = await AsQueryable().AsNoTracking()
+            .Include(e => e.ProjectLangs.Where(e => e.IsActive))
+            .ThenInclude(e => e.Language)
+            .Include(e => e.ProjectImages.Where(e => e.IsActive))
+            .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
+
+            return project;
+        }
 
         public IQueryable<Project> GetListQuery(int langId, int pageNumber, int pageSize)
         {

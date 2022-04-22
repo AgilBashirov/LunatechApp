@@ -2,6 +2,7 @@
 using Lunatech.Application.EntitiesCQ.Project.Commands;
 using Lunatech.Application.EntitiesCQ.Project.Queries;
 using Lunatech.Application.Model.Dto;
+using Lunatech.Application.Model.Dto.Advantage;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
 using Lunatech.Application.Model.Dto.Project;
@@ -81,8 +82,46 @@ namespace Lunatech.Application.Core
             CreateMap<CreateApplymentDto, Applyment>().ReverseMap();
             CreateMap<UpdateApplymentDto, Applyment>().ReverseMap();
 
+            //Priortets
+            CreateMap<Advantage, AdvantageListDto>()
+                 .AfterMap((news, newsDetailsVm, resContext) =>
+                 {
+                     AdvantageLang newsLang = news.AdvantageLangs.First();
+                     newsDetailsVm.Title = newsLang.Title;
+                     newsDetailsVm.Desc = newsLang.Desc;
+                     newsDetailsVm.LangId = newsLang.LangId;
+                     newsDetailsVm.AdvantaqeId = newsLang.AdvantageId;
+
+                 });
             
+               
+
+
+
+
+
+
+            CreateMap<AdvantageDetailDto, Advantage>().ReverseMap()
+                  .AfterMap((advantage, advantageDetailsVm, resContext) =>
+                  {
+                      var advantageSubcribe = advantage.AdvantageLangs
+                         .FirstOrDefault();
+                      advantageDetailsVm.Title = advantageSubcribe.Title;
+                      advantageDetailsVm.Desc = advantageSubcribe.Desc;
+                      advantageDetailsVm.AdvantaqeId = advantageSubcribe.AdvantageId;
+                      advantageDetailsVm.LangId = advantageSubcribe.LangId;
+                  });
+            CreateMap<CreateAdvantageDto, Advantage>().ReverseMap();
+            CreateMap<UpdateAdvantageDto, Advantage>().ReverseMap();
+            CreateMap<UpdateAdvantageDto, AdvantageLang>()
+               .ForMember(project => project.Title, opt => opt.MapFrom(createProjectCommand => createProjectCommand.updateAdvantageLangDtos.Select(x => x.Title)))
+               .ForMember(project => project.Desc, opt => opt.MapFrom(createProjectCommand => createProjectCommand.updateAdvantageLangDtos.Select(x => x.Desc)));
+;
+
+
 
         }
+
     }
 }
+

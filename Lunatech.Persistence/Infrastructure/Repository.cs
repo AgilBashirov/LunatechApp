@@ -144,7 +144,7 @@ namespace Lunatech.Persistence.Infrastructure
 
             return entity.Id;
         }
-
+     
 
         public async Task DeleteAsync(TEntity entity)
         {

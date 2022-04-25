@@ -5,6 +5,7 @@ using Lunatech.Application.Model.Dto;
 using Lunatech.Application.Model.Dto.Advantage;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
+using Lunatech.Application.Model.Dto.Partner;
 using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
 using Lunatech.Application.Model.Dto.ProjectLang;
@@ -22,18 +23,22 @@ namespace Lunatech.Application.Core
     {
         public MappingProfiles()
         {
-            //Category
+
+            #region Category
             CreateMap<GetCategoryListDto, Category>().ReverseMap();
             CreateMap<GetCategoryDetailDto, Category>().ReverseMap();
             CreateMap<CreateCategoryDto, Category>().ReverseMap();
             CreateMap<UpdateCategoryDto, Category>().ReverseMap();
+            #endregion
 
-            //Social
+            #region Social
             CreateMap<GetSocialsListDto, Social>().ReverseMap();
             CreateMap<GetSocialDetailDto, Social>().ReverseMap();
             CreateMap<CreateSocialDto, Social>().ReverseMap();
             CreateMap<UpdateSocialDto, Social>().ReverseMap();
+            #endregion
 
+            #region Project
             //Project
             CreateMap<CreateProjectCommand, Project>()
                 .ForMember(project => project.ProjectLangs, opt => opt.MapFrom(createProjectCommand => createProjectCommand.ProjectLangs))
@@ -60,28 +65,30 @@ namespace Lunatech.Application.Core
 
             CreateMap<Project, GetProjectListQuery>()
                 .ForMember(query => query.ProjectList, opt => opt.MapFrom(item => new List<Project> { item }));
+            #endregion
 
-            //CreateMap<GetProjectListQuery, GetProjectDetailQuery>()
-            //    .ForMember(detail => new List<GetProjectDetailQuery> { detail } as ICollection<GetProjectDetailQuery>, opt => opt.MapFrom(list => list));
-
-
+            #region ProjectLang
             //ProjectLang
             CreateMap<CreateProjectLangDto, ProjectLang>().ReverseMap();
             CreateMap<UpdateProjectLangDto, ProjectLang>()
                 .ForMember(projectLang => projectLang.UpdateDate, opt => opt.MapFrom(createProjectCommand => DateTime.Now));
+            #endregion
 
-
-
+            #region ProjectImage
             //ProjectImage
             CreateMap<CreateProjectImageDto, ProjectImage>().ReverseMap();
             CreateMap<UpdateProjectImageDto, ProjectImage>();
+            #endregion
 
+            #region Applyment
             //Applyment
             CreateMap<GetApplymentListDto, Applyment>().ReverseMap();
             CreateMap<GetApplymentDetailDto, Applyment>().ReverseMap();
             CreateMap<CreateApplymentDto, Applyment>().ReverseMap();
             CreateMap<UpdateApplymentDto, Applyment>().ReverseMap();
+            #endregion
 
+            #region Priortet
             //Priortets
             CreateMap<Advantage, AdvantageListDto>()
                  .AfterMap((news, newsDetailsVm, resContext) =>
@@ -93,14 +100,9 @@ namespace Lunatech.Application.Core
                      newsDetailsVm.AdvantaqeId = newsLang.AdvantageId;
 
                  });
-            
-               
+            #endregion
 
-
-
-
-
-
+            #region Advantage
             CreateMap<AdvantageDetailDto, Advantage>().ReverseMap()
                   .AfterMap((advantage, advantageDetailsVm, resContext) =>
                   {
@@ -116,7 +118,27 @@ namespace Lunatech.Application.Core
             CreateMap<UpdateAdvantageDto, AdvantageLang>()
                .ForMember(project => project.Title, opt => opt.MapFrom(createProjectCommand => createProjectCommand.updateAdvantageLangDtos.Select(x => x.Title)))
                .ForMember(project => project.Desc, opt => opt.MapFrom(createProjectCommand => createProjectCommand.updateAdvantageLangDtos.Select(x => x.Desc)));
-;
+            #endregion
+
+            #region Partner
+            CreateMap<Partner, GetPartnersListDto>();
+            CreateMap<Partner, GetPartnerDetailDto>();
+            CreateMap<CreatePartnerDto, Partner>();
+            CreateMap<UpdatePartnerDto, Partner>();
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

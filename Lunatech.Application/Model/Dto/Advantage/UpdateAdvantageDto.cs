@@ -12,6 +12,6 @@ namespace Lunatech.Application.Model.Dto.Advantage
 
         public string Title { get; set; }
         public string Desc { get; set; }
-        public int LangId { get; set; }
+        public int Id { get; set; }
     }
 }

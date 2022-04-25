@@ -65,7 +65,7 @@ namespace Lunatech.Application.EntitiesCQ.Advantage.Services
             await advantageRepo.UpdateAsync(mapped);
             foreach (var lang in command.updateAdvantageLangDtos)
             {
-                var advantageLang = context.AdvantageLangs.Find(lang.LangId);
+                var advantageLang = context.AdvantageLangs.Find(lang.Id);
                 advantageLang.Desc = lang.Desc;
                 advantageLang.Title = lang.Title;
                 advantageLang.UpdateDate = DateTime.Now;

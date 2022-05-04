@@ -10,6 +10,7 @@ using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
 using Lunatech.Application.Model.Dto.ProjectLang;
 using Lunatech.Application.Model.Dto.Socials;
+using Lunatech.Application.Model.Dto.Team;
 using Lunatech.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -127,7 +128,24 @@ namespace Lunatech.Application.Core
             CreateMap<UpdatePartnerDto, Partner>();
             #endregion
 
+            #region Team
+            CreateMap<Team, GetTeamListDto>()
+                .AfterMap((model, dto, resContext) =>
+                {
+                    dto.Profession = model.TeamLangs.Select(x=>x.Profession).FirstOrDefault();
+                });
 
+            CreateMap<Team, GetTeamDetailDto>()
+                .AfterMap((model, dto, resContext) =>
+                {
+                    dto.Profession = model.TeamLangs.Select(x => x.Profession).FirstOrDefault();
+                });
+
+            CreateMap<CreateTeamDto, Team>()
+                .ForMember(team => team.TeamLangs, opt => opt.MapFrom(dto => dto.TeamLangs));
+            CreateMap<TeamLangDto, TeamLang>();
+
+            #endregion
 
 
 

@@ -5,6 +5,7 @@ using Lunatech.Application.Model.Dto;
 using Lunatech.Application.Model.Dto.Advantage;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
+using Lunatech.Application.Model.Dto.ContactType;
 using Lunatech.Application.Model.Dto.Partner;
 using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
@@ -127,6 +128,15 @@ namespace Lunatech.Application.Core
             CreateMap<UpdatePartnerDto, Partner>();
             #endregion
 
+            //ContactType
+
+            CreateMap<ContactType, ContactTypeListDto>()
+               .AfterMap((contactType, contactTypeListDto, resContext) =>
+               {
+                   ContactTypeLang contactTypeLang = contactType.ContactTypeLangs.First();
+                   contactTypeListDto.Name = contactTypeLang.Name;
+                   contactTypeListDto.LangId = contactTypeLang.LangId;
+               });
 
 
 

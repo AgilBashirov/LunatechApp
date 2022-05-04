@@ -20,16 +20,14 @@ namespace Lunatech.Application.EntitiesCQ.Project.Services
         private readonly ProjectRepo _projectRepo;
         private readonly ProjectImageRepo _projectImageRepo;
         private readonly ProjectLangRepo _projectLangRepo;
-        private readonly AppDbContext _context;
         private readonly IMapper _mapper;
 
-        public ProjectService(ProjectRepo projectRepo, ProjectImageRepo projectImageRepo, ProjectLangRepo projectLangRepo, IMapper mapper, AppDbContext context)
+        public ProjectService(ProjectRepo projectRepo, ProjectImageRepo projectImageRepo, ProjectLangRepo projectLangRepo, IMapper mapper)
         {
             _projectRepo = projectRepo;
             _projectImageRepo = projectImageRepo;
             _projectLangRepo = projectLangRepo;
             _mapper = mapper;
-            _context = context;
         }
 
         public async Task<int> CreateAsync(CreateProjectCommand command)

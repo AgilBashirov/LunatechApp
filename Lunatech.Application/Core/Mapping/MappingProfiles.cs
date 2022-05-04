@@ -1,24 +1,28 @@
 ﻿using AutoMapper;
 using Lunatech.Application.EntitiesCQ.Project.Commands;
 using Lunatech.Application.EntitiesCQ.Project.Queries;
+using Lunatech.Application.Model.Dto;
 using Lunatech.Application.Model.Dto.Advantage;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
 using Lunatech.Application.Model.Dto.Partner;
+using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
 using Lunatech.Application.Model.Dto.ProjectLang;
 using Lunatech.Application.Model.Dto.Socials;
+using Lunatech.Application.Model.Dto.Team;
 using Lunatech.Application.Model.Dto.Testimonial;
 using Lunatech.Domain.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Lunatech.Application.Core
 {
     public class MappingProfiles : Profile
     {
-
         public MappingProfiles()
         {
 
@@ -125,25 +129,36 @@ namespace Lunatech.Application.Core
             CreateMap<UpdatePartnerDto, Partner>();
             #endregion
 
-            #region Testimonial
+            #region Team
+            CreateMap<Team, GetTeamListDto>()
+                .AfterMap((model, dto, resContext) =>
+                {
+                    dto.Profession = model.TeamLangs.Select(x=>x.Profession).FirstOrDefault();
+                });
 
-            CreateMap<Testimonial, TestimonialListDto>()
-                 .AfterMap((testimonial, testimonialListDto, resContext) =>
-                 {                    
-                     TestimonialLang testimonialLang = testimonial.TestimonialLangs.FirstOrDefault();
-                     testimonialListDto.Name = testimonialLang.Name;
-                     testimonialListDto.Review = testimonialLang.Review;
-                     testimonialListDto.LangId = testimonialLang.LangId;
-                 });
-            CreateMap<TestimonialDetailDto, Testimonial>().ReverseMap()
-                 .AfterMap((testimonial, testimonialDetailsDto, resContext) =>
-             {
-                 var testimoniallang = testimonial.TestimonialLangs
-                    .FirstOrDefault();
-                 testimonialDetailsDto.Name = testimoniallang.Name;
-                 testimonialDetailsDto.Review = testimoniallang.Review;
-                 testimonialDetailsDto.LangId = testimoniallang.LangId;
-             });
+            CreateMap<Team, GetTeamDetailDto>()
+                .AfterMap((model, dto, resContext) =>
+                {
+                    dto.Profession = model.TeamLangs.Select(x => x.Profession).FirstOrDefault();
+                });
+
+            CreateMap<CreateTeamDto, Team>()
+                .ForMember(team => team.TeamLangs, opt => opt.MapFrom(dto => dto.TeamLangs));
+            CreateMap<TeamLangDto, TeamLang>();
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
 
             CreateMap<CreateTestimonialDto, Testimonial>().ReverseMap();
             CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();

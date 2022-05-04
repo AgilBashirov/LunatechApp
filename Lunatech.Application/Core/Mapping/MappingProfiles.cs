@@ -130,17 +130,6 @@ namespace Lunatech.Application.Core
             CreateMap<UpdatePartnerDto, Partner>();
             #endregion
 
-<<<<<<<<< Temporary merge branch 1
-            //ContactType
-
-            CreateMap<ContactType, ContactTypeListDto>()
-               .AfterMap((contactType, contactTypeListDto, resContext) =>
-               {
-                   ContactTypeLang contactTypeLang = contactType.ContactTypeLangs.FirstOrDefault();
-                   contactTypeListDto.Name = contactTypeLang.Name;
-                   contactTypeListDto.LangId = contactTypeLang.LangId;
-               });
-=========
             #region Team
             CreateMap<Team, GetTeamListDto>()
                 .AfterMap((model, dto, resContext) =>
@@ -183,6 +172,17 @@ namespace Lunatech.Application.Core
             CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
 
             #endregion
+
+            #region ContactType
+
+            CreateMap<ContactType, ContactTypeListDto>()
+              .AfterMap((contactType, contactTypeListDto, resContext) =>
+              {
+                  ContactTypeLang contactTypeLang = contactType.ContactTypeLangs.FirstOrDefault();
+                  contactTypeListDto.Name = contactTypeLang.Name;
+                  contactTypeListDto.LangId = contactTypeLang.LangId;
+              });
+
             CreateMap<ContactType, ContactTypeListDto>()
                .AfterMap((contactType, contactTypeListDto, resContext) =>
                {
@@ -190,9 +190,6 @@ namespace Lunatech.Application.Core
                    contactTypeListDto.Name = contactTypeLang.Name;
                    contactTypeListDto.LangId = contactTypeLang.LangId;
                });
-
-
-
 
             CreateMap<ContactType, ContactTypeListDto>()
                .AfterMap((contactType, contactTypeListDto, resContext) =>
@@ -213,15 +210,7 @@ namespace Lunatech.Application.Core
 
             CreateMap<CreateContactTypeDto, ContactType>().ReverseMap();
             CreateMap<UpdateContactTypeDto, ContactType>().ReverseMap();
-
-
-
-
-
-
-
-
-
+            #endregion
 
         }
 

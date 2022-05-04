@@ -10,6 +10,6 @@ namespace Lunatech.Domain.Entities
     {
         public string Icon { get; set; }
 
-        public List<AdvantageLang> AdvantageLangs { get; set; }
+        public ICollection<AdvantageLang> AdvantageLangs { get; set; }
     }
 }

@@ -3,10 +3,7 @@ using Lunatech.Domain.Entities;
 using Lunatech.Persistence.Data;
 using Lunatech.Persistence.Infrastructure;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lunatech.Application.Repos
@@ -17,6 +14,13 @@ namespace Lunatech.Application.Repos
 
         public IQueryable<Advantage> GetListQuery(int pageNumber, int pageSize, int lang)
         {
+
+            if (lang >= 4)
+            {
+                var data = 1;
+                lang = data;
+            }
+
             IQueryable<Advantage> advantageListQuery =
                 AsQueryable().AsNoTracking()
                 .Include(x => x.AdvantageLangs.Where(x => x.LangId == lang));

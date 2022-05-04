@@ -150,6 +150,23 @@ namespace Lunatech.Application.Core
 
             #region Testimonial
 
+            CreateMap<Testimonial, TestimonialListDto>()
+                 .AfterMap((testimonial, testimonialListDto, resContext) =>
+                 {
+                     TestimonialLang testimonialLang = testimonial.TestimonialLangs.FirstOrDefault();
+                     testimonialListDto.Name = testimonialLang.Name;
+                     testimonialListDto.Review = testimonialLang.Review;
+                     testimonialListDto.LangId = testimonialLang.LangId;
+                 });
+            CreateMap<TestimonialDetailDto, Testimonial>().ReverseMap()
+                 .AfterMap((testimonial, testimonialDetailsDto, resContext) =>
+                 {
+                     var testimoniallang = testimonial.TestimonialLangs
+                        .FirstOrDefault();
+                     testimonialDetailsDto.Name = testimoniallang.Name;
+                     testimonialDetailsDto.Review = testimoniallang.Review;
+                     testimonialDetailsDto.LangId = testimoniallang.LangId;
+                 });
             CreateMap<CreateTestimonialDto, Testimonial>().ReverseMap();
             CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
 

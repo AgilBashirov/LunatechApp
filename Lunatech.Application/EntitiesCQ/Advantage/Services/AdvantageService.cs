@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Lunatech.Application.EntitiesCQ.Advantage.Services
@@ -65,7 +66,7 @@ namespace Lunatech.Application.EntitiesCQ.Advantage.Services
             await advantageRepo.UpdateAsync(mapped);
             foreach (var lang in command.updateAdvantageLangDtos)
             {
-                var advantageLang = context.AdvantageLangs.Find(lang.Id);
+                var advantageLang = context.AdvantageLangs.Where(x => x.AdvantageId == id && x.LangId == lang.Id).FirstOrDefault();
                 advantageLang.Desc = lang.Desc;
                 advantageLang.Title = lang.Title;
                 advantageLang.UpdateDate = DateTime.Now;

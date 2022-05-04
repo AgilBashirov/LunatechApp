@@ -11,6 +11,8 @@ using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
 using Lunatech.Application.Model.Dto.ProjectLang;
 using Lunatech.Application.Model.Dto.Socials;
+using Lunatech.Application.Model.Dto.Team;
+using Lunatech.Application.Model.Dto.Testimonial;
 using Lunatech.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -128,7 +130,51 @@ namespace Lunatech.Application.Core
             CreateMap<UpdatePartnerDto, Partner>();
             #endregion
 
-            //ContactType
+
+            #region Team
+            CreateMap<Team, GetTeamListDto>()
+                .AfterMap((model, dto, resContext) =>
+                {
+                    dto.Profession = model.TeamLangs.Select(x=>x.Profession).FirstOrDefault();
+                });
+
+            CreateMap<Team, GetTeamDetailDto>()
+                .AfterMap((model, dto, resContext) =>
+                {
+                    dto.Profession = model.TeamLangs.Select(x => x.Profession).FirstOrDefault();
+                });
+
+            CreateMap<CreateTeamDto, Team>()
+                .ForMember(team => team.TeamLangs, opt => opt.MapFrom(dto => dto.TeamLangs));
+            CreateMap<TeamLangDto, TeamLang>();
+
+            #endregion
+
+            #region Testimonial
+
+            CreateMap<Testimonial, TestimonialListDto>()
+                 .AfterMap((testimonial, testimonialListDto, resContext) =>
+                 {
+                     TestimonialLang testimonialLang = testimonial.TestimonialLangs.FirstOrDefault();
+                     testimonialListDto.Name = testimonialLang.Name;
+                     testimonialListDto.Review = testimonialLang.Review;
+                     testimonialListDto.LangId = testimonialLang.LangId;
+                 });
+            CreateMap<TestimonialDetailDto, Testimonial>().ReverseMap()
+                 .AfterMap((testimonial, testimonialDetailsDto, resContext) =>
+                 {
+                     var testimoniallang = testimonial.TestimonialLangs
+                        .FirstOrDefault();
+                     testimonialDetailsDto.Name = testimoniallang.Name;
+                     testimonialDetailsDto.Review = testimoniallang.Review;
+                     testimonialDetailsDto.LangId = testimoniallang.LangId;
+                 });
+            CreateMap<CreateTestimonialDto, Testimonial>().ReverseMap();
+            CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
+
+            #endregion
+
+
 
             CreateMap<ContactType, ContactTypeListDto>()
                .AfterMap((contactType, contactTypeListDto, resContext) =>
@@ -138,21 +184,17 @@ namespace Lunatech.Application.Core
                    contactTypeListDto.LangId = contactTypeLang.LangId;
                });
 
+            CreateMap<ContactTypeDetailDto, ContactType>().ReverseMap()
+            .AfterMap((contactType, contactTypeDetailDto, resContext) =>
+            {
+                var testimoniallang = contactType.ContactTypeLangs
+                   .FirstOrDefault();
+                contactTypeDetailDto.Name = testimoniallang.Name;
+                contactTypeDetailDto.LangId = testimoniallang.LangId;
+            });
 
-
-
-            //CreateMap<TestimonialDetailDto, Testimonial>().ReverseMap()
-            //.AfterMap((testimonial, testimonialDetailsDto, resContext) =>
-            //{
-            //    var testimoniallang = testimonial.TestimonialLangs
-            //            .FirstOrDefault();
-            //    testimonialDetailsDto.Name = testimoniallang.Name;
-            //    testimonialDetailsDto.Review = testimoniallang.Review;
-            //    testimonialDetailsDto.LangId = testimoniallang.LangId;
-            //});
-
-            //CreateMap<CreateTestimonialDto, Testimonial>().ReverseMap();
-            //CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
+            CreateMap<CreateContactTypeDto, ContactType>().ReverseMap();
+            CreateMap<UpdateContactTypeDto, ContactType>().ReverseMap();
 
 
 

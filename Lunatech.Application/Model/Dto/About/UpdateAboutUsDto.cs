@@ -8,5 +8,7 @@ namespace Lunatech.Application.Model.Dto.About
 {
     public class UpdateAboutUsDto
     {
+        public string Image { get; set; }
+        public List<AboutUsLangDto> AboutUsLangs { get; set; }
     }
 }

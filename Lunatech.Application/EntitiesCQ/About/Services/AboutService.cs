@@ -3,6 +3,7 @@ using Lunatech.Application.EntitiesCQ.About.Interfaces;
 using Lunatech.Application.Model.Dto.About;
 using Lunatech.Application.Repos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,29 +23,56 @@ namespace Lunatech.Application.EntitiesCQ.About.Services
             _mapper = mapper;
         }
 
-        public Task<ActionResult<int>> Create(CreateAboutUsDto command)
+        public async Task<ActionResult<int>> Create(CreateAboutUsDto command)
         {
-            throw new NotImplementedException();
+            var model = _mapper.Map<Domain.Entities.AboutUs>(command);
+            model.CreatedDate = DateTime.Now;
+            model.IsActive = true;
+            return await _aboutRepo.InsertAsync(model);
         }
 
-        public Task Delete(int id)
+        public async Task Delete(int id)
         {
-            throw new NotImplementedException();
+            var model = await _aboutRepo.GetByIdAsync(id);
+
+            foreach (var item in model.AboutUsLangs)
+            {
+                item.IsActive = false;
+                item.UpdateDate = DateTime.Now;
+                item.DeletedDate = DateTime.Now;
+            }
+
+            await _aboutRepo.DeleteAsync(model);
         }
 
-        public Task<GetAboutUsDetailDto> Details(int id, int langId)
+        public async Task<GetAboutUsDetailDto> Details(int id, int langId)
         {
-            throw new NotImplementedException();
+            var result = await _aboutRepo.GetByIdAsync(id, langId);
+            return _mapper.Map<GetAboutUsDetailDto>(result);
         }
 
-        public Task<List<GetAboutUsListDto>> Get(int pageNumber, int pageSize, int lang)
+        public async Task<List<GetAboutUsListDto>> Get(int pageNumber, int pageSize, int langId)
         {
-            throw new NotImplementedException();
+            var result = await _aboutRepo.GetListQuery(pageNumber, pageSize, langId).ToListAsync();
+            return _mapper.Map<List<GetAboutUsListDto>>(result);
         }
 
-        public Task<int> Update(int id, UpdateAboutUsDto command)
+        public async Task<int> Update(int id, UpdateAboutUsDto command)
         {
-            throw new NotImplementedException();
+            var entity = await _aboutRepo.GetByIdAsync(id);
+            entity.Image = command.Image;
+
+            foreach (var item in command.AboutUsLangs.Where(x => x.LangId > 0))
+            {
+                var projectLang = entity.AboutUsLangs.FirstOrDefault(x => x.LangId == item.LangId && x.IsActive);
+                projectLang.Title = item.Title;
+                projectLang.MainDesc = item.MainDesc;
+                projectLang.ShortDesc = item.ShortDesc;
+                projectLang.Quote = item.Quote;
+                projectLang.UpdateDate = DateTime.Now;
+            }
+
+            return await _aboutRepo.UpdateAsync(entity);
         }
     }
 }

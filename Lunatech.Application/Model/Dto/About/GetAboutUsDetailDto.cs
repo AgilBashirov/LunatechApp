@@ -8,5 +8,10 @@ namespace Lunatech.Application.Model.Dto.About
 {
     public class GetAboutUsDetailDto
     {
+        public string Image { get; set; }
+        public string Title { get; set; }
+        public string ShortDesc { get; set; }
+        public string MainDesc { get; set; }
+        public string Quote { get; set; }
     }
 }

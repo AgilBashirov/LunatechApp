@@ -5,6 +5,7 @@ using Lunatech.Application.Model.Dto;
 using Lunatech.Application.Model.Dto.Advantage;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
+using Lunatech.Application.Model.Dto.ContactType;
 using Lunatech.Application.Model.Dto.Partner;
 using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
@@ -171,10 +172,29 @@ namespace Lunatech.Application.Core
             CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
 
             #endregion
+            CreateMap<ContactType, ContactTypeListDto>()
+               .AfterMap((contactType, contactTypeListDto, resContext) =>
+               {
+                   ContactTypeLang contactTypeLang = contactType.ContactTypeLangs.FirstOrDefault();
+                   contactTypeListDto.Name = contactTypeLang.Name;
+                   contactTypeListDto.LangId = contactTypeLang.LangId;
+               });
 
 
 
 
+            //CreateMap<TestimonialDetailDto, Testimonial>().ReverseMap()
+            //.AfterMap((testimonial, testimonialDetailsDto, resContext) =>
+            //{
+            //    var testimoniallang = testimonial.TestimonialLangs
+            //            .FirstOrDefault();
+            //    testimonialDetailsDto.Name = testimoniallang.Name;
+            //    testimonialDetailsDto.Review = testimoniallang.Review;
+            //    testimonialDetailsDto.LangId = testimoniallang.LangId;
+            //});
+
+            //CreateMap<CreateTestimonialDto, Testimonial>().ReverseMap();
+            //CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
 
 
 

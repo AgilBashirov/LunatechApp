@@ -1,4 +1,5 @@
 ﻿using Lunatech.Application.Model.Dto.ContactType;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ namespace Lunatech.Application.EntitiesCQ.ContactType.Interfaces
     public interface IContactTypeService: IBaseService
     {
         Task<List<ContactTypeListDto>> Get(int pageNumber, int pageSize, int lang);
-        //Task<AdvantageDetailDto> Details(int id, int lang);
-        //Task<ActionResult<int>> Create(CreateAdvantageDto command);
-        //Task<int> Update(int id, UpdateAdvantageDto command);
-        //Task Delete(int id);
+        Task<ContactTypeDetailDto> Details(int id, int lang);
+        Task<ActionResult<int>> Create(CreateContactTypeDto command);
+        Task<int> Update(int id, UpdateContactTypeDto command);
+        Task Delete(int id);
     }
 }

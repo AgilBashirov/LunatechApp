@@ -130,6 +130,17 @@ namespace Lunatech.Application.Core
             CreateMap<UpdatePartnerDto, Partner>();
             #endregion
 
+<<<<<<<<< Temporary merge branch 1
+            //ContactType
+
+            CreateMap<ContactType, ContactTypeListDto>()
+               .AfterMap((contactType, contactTypeListDto, resContext) =>
+               {
+                   ContactTypeLang contactTypeLang = contactType.ContactTypeLangs.FirstOrDefault();
+                   contactTypeListDto.Name = contactTypeLang.Name;
+                   contactTypeListDto.LangId = contactTypeLang.LangId;
+               });
+=========
             #region Team
             CreateMap<Team, GetTeamListDto>()
                 .AfterMap((model, dto, resContext) =>
@@ -183,18 +194,25 @@ namespace Lunatech.Application.Core
 
 
 
-            //CreateMap<TestimonialDetailDto, Testimonial>().ReverseMap()
-            //.AfterMap((testimonial, testimonialDetailsDto, resContext) =>
-            //{
-            //    var testimoniallang = testimonial.TestimonialLangs
-            //            .FirstOrDefault();
-            //    testimonialDetailsDto.Name = testimoniallang.Name;
-            //    testimonialDetailsDto.Review = testimoniallang.Review;
-            //    testimonialDetailsDto.LangId = testimoniallang.LangId;
-            //});
+            CreateMap<ContactType, ContactTypeListDto>()
+               .AfterMap((contactType, contactTypeListDto, resContext) =>
+               {
+                   ContactTypeLang contactTypeLang = contactType.ContactTypeLangs.FirstOrDefault();
+                   contactTypeListDto.Name = contactTypeLang.Name;
+                   contactTypeListDto.LangId = contactTypeLang.LangId;
+               });
 
-            //CreateMap<CreateTestimonialDto, Testimonial>().ReverseMap();
-            //CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
+            CreateMap<ContactTypeDetailDto, ContactType>().ReverseMap()
+            .AfterMap((contactType, contactTypeDetailDto, resContext) =>
+            {
+                var testimoniallang = contactType.ContactTypeLangs
+                   .FirstOrDefault();
+                contactTypeDetailDto.Name = testimoniallang.Name;
+                contactTypeDetailDto.LangId = testimoniallang.LangId;
+            });
+
+            CreateMap<CreateContactTypeDto, ContactType>().ReverseMap();
+            CreateMap<UpdateContactTypeDto, ContactType>().ReverseMap();
 
 
 

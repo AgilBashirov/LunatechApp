@@ -20,6 +20,7 @@ namespace Lunatech.WebApi.Controllers
             this.contactTypeService = contactTypeService;
         }
 
+
         [HttpGet]
         public async Task<ActionResult<List<ContactTypeListDto>>> Get(int pageNumber, int pageSize, int lang)
         {
@@ -27,5 +28,32 @@ namespace Lunatech.WebApi.Controllers
         }
 
 
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ContactTypeDetailDto>> Details(int id, int lang)
+        {
+            var result = await contactTypeService.Details(id, lang);
+            return result;
+        }
+
+        [HttpPost]
+        public async Task<ActionResult<int>> Create(CreateContactTypeDto command)
+        {
+            return await contactTypeService.Create(command);
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update([FromRoute] int id, [FromBody] UpdateContactTypeDto command)
+        {
+            var data = await contactTypeService.Update(id, command);
+            return NoContent();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            await contactTypeService.Delete(id);
+            return Ok();
+        }
     }
 }

@@ -148,21 +148,25 @@ namespace Lunatech.Application.Core
 
             #endregion
 
-
-
-
-
-
-
-
-
-
-
-
+            #region Testimonial
 
             CreateMap<CreateTestimonialDto, Testimonial>().ReverseMap();
             CreateMap<UpdateTestimonialDto, Testimonial>().ReverseMap();
+
             #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         }
 

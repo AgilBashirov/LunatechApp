@@ -25,5 +25,7 @@ namespace Lunatech.WebApi.Controllers
         {
             return await contactTypeService.Get(pageNumber, pageSize, lang);
         }
+
+
     }
 }

@@ -29,8 +29,8 @@ namespace Lunatech.Application.Repos
         public async Task<AboutUs> GetByIdAsync(int id)
         {
             AboutUs about = await AsQueryable().AsNoTracking()
-            //.Include(e => e.TeamLangs.Where(e => e.IsActive))
-            //.ThenInclude(e => e.Language)
+            .Include(e => e.AboutUsLangs.Where(e => e.IsActive))
+            .ThenInclude(e => e.Language)
             .FirstOrDefaultAsync(e => e.Id == id && e.IsActive);
 
             return about;

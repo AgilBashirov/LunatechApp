@@ -64,12 +64,12 @@ namespace Lunatech.Application.EntitiesCQ.About.Services
 
             foreach (var item in command.AboutUsLangs.Where(x => x.LangId > 0))
             {
-                var projectLang = entity.AboutUsLangs.FirstOrDefault(x => x.LangId == item.LangId && x.IsActive);
-                projectLang.Title = item.Title;
-                projectLang.MainDesc = item.MainDesc;
-                projectLang.ShortDesc = item.ShortDesc;
-                projectLang.Quote = item.Quote;
-                projectLang.UpdateDate = DateTime.Now;
+                var aboutLang = entity.AboutUsLangs.FirstOrDefault(x => x.LangId == item.LangId && x.IsActive);
+                aboutLang.Title = item.Title;
+                aboutLang.MainDesc = item.MainDesc;
+                aboutLang.ShortDesc = item.ShortDesc;
+                aboutLang.Quote = item.Quote;
+                aboutLang.UpdateDate = DateTime.Now;
             }
 
             return await _aboutRepo.UpdateAsync(entity);

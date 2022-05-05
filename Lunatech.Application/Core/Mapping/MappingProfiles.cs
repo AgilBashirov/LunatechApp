@@ -235,6 +235,7 @@ namespace Lunatech.Application.Core
             CreateMap<UpdateContactTypeDto, ContactType>().ReverseMap();
             #endregion
 
+            #region Contact
             CreateMap<Contact, ContactListDto>()
             .AfterMap((contact, contactListDto, resContext) =>
             {
@@ -256,6 +257,8 @@ namespace Lunatech.Application.Core
              });
             CreateMap<CreateContactDto, Contact>().ReverseMap();
             CreateMap<UpdateContactDto, Contact>().ReverseMap();
+            #endregion
+
 
         }
 

@@ -2,6 +2,7 @@
 using Lunatech.Application.EntitiesCQ.Services.Interfaces;
 using Lunatech.Application.Model.Dto.Services;
 using Lunatech.Application.Repos;
+using Lunatech.Domain.Entities;
 using Lunatech.Persistence.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -36,10 +37,18 @@ namespace Lunatech.Application.EntitiesCQ.Services.Services
 
         public async Task<int> Create(CreateServicesDto command)
         {
-            var model = mapper.Map<Domain.Entities.Service>(command);
-            model.CreatedDate = DateTime.Now;
-            model.IsActive = true;
-            return await servicesRepo.InsertAsync(model);
+            foreach (var lang in command.servicesLangDtos)
+            {
+                Service service = new Service();
+                service.Title = lang.Title;
+                service.Info = lang.Info;
+                service.LangId = lang.LangId;
+                service.CreatedDate = DateTime.Now;
+                service.IsActive = true;
+                await context.Services.AddAsync(service);
+                await context.SaveChangesAsync();
+            }
+            return 0;
         }
 
         public async Task<int> Update(int id, UpdateServicesDto command)

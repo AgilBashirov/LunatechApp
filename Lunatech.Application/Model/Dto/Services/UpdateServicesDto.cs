@@ -6,4 +6,5 @@
         public string Info { get; set; }
         public int LangId { get; set; }
     }
+   
 }

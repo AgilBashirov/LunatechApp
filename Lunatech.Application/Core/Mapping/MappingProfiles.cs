@@ -261,10 +261,12 @@ namespace Lunatech.Application.Core
             #endregion
 
             #region Language
+
             CreateMap<Language, GetLanguageListDto>();
             CreateMap<Language, GetLanguageDetailDto>();
             CreateMap<CreateLanguageDto, Language>();
             CreateMap<UpdateLanguageDto, Language>().ReverseMap();
+
             #endregion
         }
 

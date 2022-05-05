@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Lunatech.Domain.Entities
 {
@@ -15,5 +16,10 @@ namespace Lunatech.Domain.Entities
         public List<TeamLang> TeamLangs { get; set; }
         public List<ContactLang> ContactLangs { get; set; }
         public List<ContactTypeLang> ContactTypeLangs { get; set; }
+
+        public object Where(Func<object, bool> p)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

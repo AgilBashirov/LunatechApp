@@ -1,13 +1,10 @@
 ﻿using Lunatech.Application.Model.Dto.Socials;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Lunatech.Application.EntitiesCQ.Socials.Interfaces
 {
-     public interface ISocialService : IBaseService
+    public interface ISocialService : IBaseService
      {
         Task<List<GetSocialsListDto>> GetAllAsync();
         Task<GetSocialDetailDto> GetAsync(int id);

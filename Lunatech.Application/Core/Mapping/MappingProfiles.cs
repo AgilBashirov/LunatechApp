@@ -174,7 +174,6 @@ namespace Lunatech.Application.Core
 
             #endregion
 
-            #region ContactType
             #region AboutUs
 
             CreateMap<AboutUs, GetAboutUsListDto>()
@@ -187,13 +186,7 @@ namespace Lunatech.Application.Core
                  dto.Quote = aboutUsLang.Quote;
              });
 
-            CreateMap<ContactType, ContactTypeListDto>()
-              .AfterMap((contactType, contactTypeListDto, resContext) =>
-              {
-                  ContactTypeLang contactTypeLang = contactType.ContactTypeLangs.FirstOrDefault();
-                  contactTypeListDto.Name = contactTypeLang.Name;
-                  contactTypeListDto.LangId = contactTypeLang.LangId;
-              });
+            
             CreateMap<AboutUs, GetAboutUsDetailDto>()
             .AfterMap((ent, dto, resContext) =>
             {
@@ -209,6 +202,8 @@ namespace Lunatech.Application.Core
             CreateMap<AboutUsLangDto, AboutUsLang>();
 
             #endregion
+
+            #region ContactType
 
             CreateMap<ContactType, ContactTypeListDto>()
                .AfterMap((contactType, contactTypeListDto, resContext) =>

@@ -8,6 +8,7 @@ using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
 using Lunatech.Application.Model.Dto.Contact;
 using Lunatech.Application.Model.Dto.ContactType;
+using Lunatech.Application.Model.Dto.Language;
 using Lunatech.Application.Model.Dto.Partner;
 using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
@@ -259,7 +260,12 @@ namespace Lunatech.Application.Core
             CreateMap<UpdateContactDto, Contact>().ReverseMap();
             #endregion
 
-
+            #region Language
+            CreateMap<Language, GetLanguageListDto>();
+            CreateMap<Language, GetLanguageDetailDto>();
+            CreateMap<CreateLanguageDto, Language>();
+            CreateMap<UpdateLanguageDto, Language>().ReverseMap();
+            #endregion
         }
 
     }

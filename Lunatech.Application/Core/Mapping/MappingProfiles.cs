@@ -6,6 +6,7 @@ using Lunatech.Application.Model.Dto.About;
 using Lunatech.Application.Model.Dto.Advantage;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
+using Lunatech.Application.Model.Dto.Contact;
 using Lunatech.Application.Model.Dto.ContactType;
 using Lunatech.Application.Model.Dto.Partner;
 using Lunatech.Application.Model.Dto.Project;
@@ -233,6 +234,28 @@ namespace Lunatech.Application.Core
             CreateMap<CreateContactTypeDto, ContactType>().ReverseMap();
             CreateMap<UpdateContactTypeDto, ContactType>().ReverseMap();
             #endregion
+
+            CreateMap<Contact, ContactListDto>()
+            .AfterMap((contact, contactListDto, resContext) =>
+            {
+                ContactLang contactLang = contact.ContactLangs.FirstOrDefault();
+                contactListDto.Value = contactLang.Value;
+                contactListDto.LangId = contactLang.LangId;
+                contactListDto.ContactTypeId = contactLang.Contact.ContactTypeId;
+                contactListDto.Name = contactLang.Contact.ContactType.ContactTypeLangs.First().Name;
+            });
+
+            CreateMap<Contact, ContactDetailDto>()
+             .AfterMap((contact, contactListDto, resContext) =>
+             {
+                 ContactLang contactLang = contact.ContactLangs.FirstOrDefault();
+                 contactListDto.Value = contactLang.Value;
+                 contactListDto.LangId = contactLang.LangId;
+                 contactListDto.ContactTypeId = contactLang.Contact.ContactTypeId;
+                 contactListDto.Name = contactLang.Contact.ContactType.ContactTypeLangs.First().Name;
+             });
+            CreateMap<CreateContactDto, Contact>().ReverseMap();
+            CreateMap<UpdateContactDto, Contact>().ReverseMap();
 
         }
 

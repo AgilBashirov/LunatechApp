@@ -1,4 +1,5 @@
-﻿using Lunatech.Application.Model.Dto.ContactType;
+﻿using Lunatech.Application.Model.Dto.Contact;
+using Lunatech.Application.Model.Dto.ContactType;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

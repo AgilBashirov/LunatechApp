@@ -2,6 +2,7 @@
 using Lunatech.Application.EntitiesCQ.Project.Commands;
 using Lunatech.Application.EntitiesCQ.Project.Queries;
 using Lunatech.Application.Model.Dto;
+using Lunatech.Application.Model.Dto.About;
 using Lunatech.Application.Model.Dto.Advantage;
 using Lunatech.Application.Model.Dto.Applyment;
 using Lunatech.Application.Model.Dto.Category;
@@ -174,6 +175,17 @@ namespace Lunatech.Application.Core
             #endregion
 
             #region ContactType
+            #region AboutUs
+
+            CreateMap<AboutUs, GetAboutUsListDto>()
+            .AfterMap((ent, dto, resContext) =>
+             {
+                 AboutUsLang aboutUsLang = ent.AboutUsLangs.FirstOrDefault();
+                 dto.Title = aboutUsLang.Title;
+                 dto.ShortDesc = aboutUsLang.ShortDesc;
+                 dto.MainDesc = aboutUsLang.MainDesc;
+                 dto.Quote = aboutUsLang.Quote;
+             });
 
             CreateMap<ContactType, ContactTypeListDto>()
               .AfterMap((contactType, contactTypeListDto, resContext) =>
@@ -182,6 +194,21 @@ namespace Lunatech.Application.Core
                   contactTypeListDto.Name = contactTypeLang.Name;
                   contactTypeListDto.LangId = contactTypeLang.LangId;
               });
+            CreateMap<AboutUs, GetAboutUsDetailDto>()
+            .AfterMap((ent, dto, resContext) =>
+            {
+                AboutUsLang aboutUsLang = ent.AboutUsLangs.FirstOrDefault();
+                dto.Title = aboutUsLang.Title;
+                dto.ShortDesc = aboutUsLang.ShortDesc;
+                dto.MainDesc = aboutUsLang.MainDesc;
+                dto.Quote = aboutUsLang.Quote;
+            });
+
+            CreateMap<CreateAboutUsDto, AboutUs>()
+                .ForMember(about => about.AboutUsLangs, opt => opt.MapFrom(dto => dto.AboutUsLangs));
+            CreateMap<AboutUsLangDto, AboutUsLang>();
+
+            #endregion
 
             CreateMap<ContactType, ContactTypeListDto>()
                .AfterMap((contactType, contactTypeListDto, resContext) =>

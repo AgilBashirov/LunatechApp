@@ -28,8 +28,6 @@ namespace Lunatech.WebApi.Controllers
             _signInManager = signInManager;
         }
 
-
-
         [HttpPost("Register")]
         public async Task<IActionResult> Register(RegisterFormDto register)
         {

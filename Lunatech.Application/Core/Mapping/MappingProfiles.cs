@@ -13,6 +13,7 @@ using Lunatech.Application.Model.Dto.Partner;
 using Lunatech.Application.Model.Dto.Project;
 using Lunatech.Application.Model.Dto.ProjectImage;
 using Lunatech.Application.Model.Dto.ProjectLang;
+using Lunatech.Application.Model.Dto.Services;
 using Lunatech.Application.Model.Dto.Socials;
 using Lunatech.Application.Model.Dto.Team;
 using Lunatech.Application.Model.Dto.Testimonial;
@@ -137,7 +138,7 @@ namespace Lunatech.Application.Core
             CreateMap<Team, GetTeamListDto>()
                 .AfterMap((model, dto, resContext) =>
                 {
-                    dto.Profession = model.TeamLangs.Select(x=>x.Profession).FirstOrDefault();
+                    dto.Profession = model.TeamLangs.Select(x => x.Profession).FirstOrDefault();
                 });
 
             CreateMap<Team, GetTeamDetailDto>()
@@ -188,7 +189,7 @@ namespace Lunatech.Application.Core
                  dto.Quote = aboutUsLang.Quote;
              });
 
-            
+
             CreateMap<AboutUs, GetAboutUsDetailDto>()
             .AfterMap((ent, dto, resContext) =>
             {
@@ -268,8 +269,16 @@ namespace Lunatech.Application.Core
             CreateMap<UpdateLanguageDto, Language>().ReverseMap();
 
             #endregion
+
+
+            CreateMap<Service, ServicesListDto>().ReverseMap();
+            CreateMap<Service, ServicesDetailDto>().ReverseMap();
+            CreateMap<Service, CreateServicesDto>().ReverseMap();
+            CreateMap<Service, UpdateServicesDto>().ReverseMap();
+
         }
 
     }
 }
+
 

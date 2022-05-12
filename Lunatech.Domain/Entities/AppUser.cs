@@ -4,5 +4,6 @@ namespace Lunatech.Domain.Entities
 {
     public class AppUser : IdentityUser<int>
     {
+
     }
 }

@@ -104,9 +104,6 @@ namespace Lunatech.Persistence.Data
                 #endregion
 
                 #region AboutUsLang
-
-
-
                 List<AboutUsLang> aboutList = new();
                 aboutList.Add(new()
                 {

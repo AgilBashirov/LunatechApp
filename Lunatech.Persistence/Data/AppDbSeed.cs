@@ -25,21 +25,27 @@ namespace Lunatech.Persistence.Data
                     return app;
 
                 #region Language
-                List<Language> language = new();
-                language.Add(new()
+                List<Language> languages = new();
+                languages.Add(new()
                 {
                     Name = "azerbaycan",
-                    Label = "az"
+                    Label = "az",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
-                language.Add(new()
+                languages.Add(new()
                 {
                     Name = "rusiya",
-                    Label = "ru"
+                    Label = "ru",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
-                language.Add(new()
+                languages.Add(new()
                 {
                     Name = "english",
-                    Label = "en"
+                    Label = "en",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
@@ -48,17 +54,23 @@ namespace Lunatech.Persistence.Data
                 pList.Add(new()
                 {
                     Name = "Partner-Name",
-                    Image = "Partner-Image"
+                    Image = "Partner-Image",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 pList.Add(new()
                 {
                     Name = "Partner-2-Name",
-                    Image = "Partner-2-Image"
+                    Image = "Partner-2-Image",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 pList.Add(new()
                 {
                     Name = "Partner-3-Name",
-                    Image = "Partner-3-Image"
+                    Image = "Partner-3-Image",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
@@ -69,68 +81,86 @@ namespace Lunatech.Persistence.Data
                     Fullname = "Applyment-Fullname",
                     Email = "Applyment-Email",
                     Phone = "Applyment-Phone",
-                    Text = "Applyment-Text"
+                    Text = "Applyment-Text",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 aList.Add(new()
                 {
                     Fullname = "Applyment2-Fullname",
                     Email = "Applyment2-Email",
                     Phone = "Applyment2-Phone",
-                    Text = "Applyment2-Text"
+                    Text = "Applyment2-Text",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 aList.Add(new()
                 {
                     Fullname = "Applyment3-Fullname",
                     Email = "Applyment3-Email",
                     Phone = "Applyment3-Phone",
-                    Text = "Applyment3-Text"
+                    Text = "Applyment3-Text",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
                 #region AboutUs
-                List<AboutUs> AboutUsList = new();
-                AboutUsList.Add(new()
+                List<AboutUs> aboutUsList = new();
+                aboutUsList.Add(new()
                 {
                     Image = "AboutUs-Image",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
-                AboutUsList.Add(new()
+                aboutUsList.Add(new()
                 {
                     Image = "AboutUs1-Image",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
-                AboutUsList.Add(new()
+                aboutUsList.Add(new()
                 {
                     Image = "AboutUs2-Image",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
                 #region AboutUsLang
-                List<AboutUsLang> aboutList = new();
-                aboutList.Add(new()
+                List<AboutUsLang> aboutUsLangList = new();
+                aboutUsLangList.Add(new()
                 {
                     Title = "AboutUsLang-Title",
                     ShortDesc = "AboutUsLang-ShortDesc",
                     MainDesc = "AboutUsLang-MainDesc",
                     Quote = "AboutUsLang-Quote",
                     AboutUsId = 1,
-                    LangId = 1
+                    LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
-                aboutList.Add(new()
+                aboutUsLangList.Add(new()
                 {
                     Title = "AboutUsLang1-Title",
                     ShortDesc = "AboutUsLang1-ShortDesc",
                     MainDesc = "AboutUsLang1-MainDesc",
                     Quote = "AboutUsLang1-Quote",
                     AboutUsId = 1,
-                    LangId = 1
+                    LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
-                aboutList.Add(new()
+                aboutUsLangList.Add(new()
                 {
                     Title = "AboutUsLang2-Title",
                     ShortDesc = "AboutUsLang2-ShortDesc",
                     MainDesc = "AboutUsLang2-MainDesc",
                     Quote = "AboutUsLang2-Quote",
                     AboutUsId = 1,
-                    LangId = 1
+                    LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
 
                 #endregion
@@ -144,11 +174,15 @@ namespace Lunatech.Persistence.Data
                 });
                 testimonialList.Add(new()
                 {
-                    Image = "Testimonial-image1"
+                    Image = "Testimonial-image1",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 testimonialList.Add(new()
                 {
-                    Image = "Testimonial-image1"
+                    Image = "Testimonial-image1",
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
 
                 #endregion
@@ -161,6 +195,8 @@ namespace Lunatech.Persistence.Data
                     Review = "TestimonialLang-Review",
                     TestimonialId = 1,
                     LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 testimonialLangList.Add(new()
                 {
@@ -168,6 +204,8 @@ namespace Lunatech.Persistence.Data
                     Review = "TestimonialLang-Review1",
                     TestimonialId = 1,
                     LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 testimonialLangList.Add(new()
                 {
@@ -175,6 +213,8 @@ namespace Lunatech.Persistence.Data
                     Review = "TestimonialLang-Review2",
                     TestimonialId = 1,
                     LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
@@ -184,35 +224,25 @@ namespace Lunatech.Persistence.Data
                 {
                     Title = "Service-Title",
                     Info = "Service-Info",
-                    LangId = 1
+                    LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 serviceList.Add(new()
                 {
                     Title = "Service-Title1",
                     Info = "Service-Info1",
-                    LangId = 1
+                    LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 serviceList.Add(new()
                 {
                     Title = "Service-Title2",
                     Info = "Service-Info2",
-                    LangId = 1
-                });
-                #endregion
-
-                #region Category
-                List<Category> categoryList = new();
-                categoryList.Add(new()
-                {
-                    Name = "Category-Name",
-                });
-                categoryList.Add(new()
-                {
-                    Name = "Category-Name1",
-                });
-                categoryList.Add(new()
-                {
-                    Name = "Category-Name2",
+                    LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
@@ -221,17 +251,23 @@ namespace Lunatech.Persistence.Data
                 projectList.Add(new()
                 {
                     Link = "Project-Link",
-                    CategoryId = 1
+                    CategoryId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 projectList.Add(new()
                 {
                     Link = "Project-Link1",
-                    CategoryId = 1
+                    CategoryId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 projectList.Add(new()
                 {
                     Link = "Project-Link2",
-                    CategoryId = 1
+                    CategoryId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
@@ -243,6 +279,8 @@ namespace Lunatech.Persistence.Data
                     Priority = 1,
                     IsMain = true,
                     ProjectId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 projectImageList.Add(new()
                 {
@@ -250,6 +288,8 @@ namespace Lunatech.Persistence.Data
                     Priority = 1,
                     IsMain = true,
                     ProjectId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 projectImageList.Add(new()
                 {
@@ -257,6 +297,8 @@ namespace Lunatech.Persistence.Data
                     Priority = 1,
                     IsMain = true,
                     ProjectId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
@@ -270,6 +312,8 @@ namespace Lunatech.Persistence.Data
                     Name = "ProjectLang-Name",
                     ProjectId = 1,
                     LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 projectLangList.Add(new()
                 {
@@ -279,6 +323,8 @@ namespace Lunatech.Persistence.Data
                     Name = "ProjectLang-Name1",
                     ProjectId = 1,
                     LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 projectLangList.Add(new()
                 {
@@ -288,6 +334,8 @@ namespace Lunatech.Persistence.Data
                     Name = "ProjectLang-Name1",
                     ProjectId = 1,
                     LangId = 1,
+                    CreatedDate = DateTime.Now,
+                    IsActive = true
                 });
                 #endregion
 
@@ -331,22 +379,22 @@ namespace Lunatech.Persistence.Data
                 });
                 #endregion
 
-                #region PC
-                List<Category> pcList = new();
+                #region Categories
+                List<Category> categoryList = new();
 
-                pcList.Add(new()
+                categoryList.Add(new()
                 {
                     Name = "IT",
                     CreatedDate = DateTime.Now,
                     IsActive = true,
                 });
-                pcList.Add(new()
+                categoryList.Add(new()
                 {
                     Name = "Industry",
                     CreatedDate = DateTime.Now,
                     IsActive = true,
                 });
-                pcList.Add(new()
+                categoryList.Add(new()
                 {
                     Name = "Health",
                     CreatedDate = DateTime.Now,
@@ -560,6 +608,14 @@ namespace Lunatech.Persistence.Data
 
                 #endregion
 
+                await db.Languages.AddRangeAsync(languages);
+                await db.Partners.AddRangeAsync(pList);
+                await db.Applyments.AddRangeAsync(aList);
+                await db.AboutUs.AddRangeAsync(aboutUsList); 
+                await db.AboutUsLangs.AddRangeAsync(aboutUsLangList);
+                await db.Testimonials.AddRangeAsync(testimonialList);
+                await db.TestimonialLangs.AddRangeAsync(testimonialLangList);
+                await db.Services.AddRangeAsync(serviceList);
                 await db.ContactTypes.AddRangeAsync(contactTypeList);
                 await db.ContactTypeLangs.AddRangeAsync(contactTypeLangList);
                 await db.Contacts.AddRangeAsync(contactList);
@@ -570,7 +626,7 @@ namespace Lunatech.Persistence.Data
                 await db.AdvantageLangs.AddRangeAsync(advantageLangList);
                 await db.Settings.AddRangeAsync(settingList);
                 await db.Socials.AddRangeAsync(scList);
-                await db.Categories.AddRangeAsync(pcList);
+                await db.Categories.AddRangeAsync(categoryList);
                 await db.SaveChangesAsync();
                 foreach (var user in uList)
                 {
@@ -582,9 +638,6 @@ namespace Lunatech.Persistence.Data
                     await roleManager.CreateAsync(role);
                     await db.SaveChangesAsync();
                 }
-
-
-
             }
             return app;
         }
